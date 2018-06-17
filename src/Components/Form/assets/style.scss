@@ -1,4 +1,6 @@
 .form {
+  width: 15em;
+
 
   p {
     color: white;
@@ -8,11 +10,13 @@
     }
   }
 
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 15em;
+  input {
+    width: 10em;
+    font-size: 2rem;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    padding: .2em 1em;
     margin: auto;
   }
 }
