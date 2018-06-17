@@ -1,0 +1,30 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .logo {
+    display: flex;
+    padding: 1.5em;
+    margin-bottom: 5em;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25em;
+    margin: 0 auto;
+
+    h1 {
+      color: white;
+      font-size: 4rem;
+      font-weight: 200;
+      font-family: "Shnobel";
+      text-align: center;
+    }
+  }
+}
