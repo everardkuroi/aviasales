@@ -1,6 +1,8 @@
 .socials {
+  width: 100%;
 
   p {
+    font-family: 'Open Sans', sans-serif;
     color: white;
 
     span {
@@ -10,6 +12,10 @@
 
   div {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+
+    .link {
+      cursor: pointer;
+    }
   }
 }

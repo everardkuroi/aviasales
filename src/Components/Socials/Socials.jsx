@@ -11,16 +11,16 @@ export default class Socials extends React.Component {
       <div className={'socials'}>
         <p><span>1.</span>Поделитесь с друзьями</p>
         <div>
-          <span>
+          <span className={'link'}>
             <img src={vk} />
           </span>
-          <span>
+          <span className={'link'}>
             <img src={fb} />
           </span>
-          <span>
+          <span className={'link'}>
             <img src={twitter} />
           </span>
-          <span>
+          <span className={'link'}>
             <img src={ok} />
           </span>
         </div>

@@ -1,8 +1,9 @@
 .form {
-  width: 15em;
+  width: 100%;
 
 
   p {
+    font-family: 'Open Sans', sans-serif;
     color: white;
 
     span {
@@ -10,13 +11,40 @@
     }
   }
 
-  input {
-    width: 10em;
-    font-size: 2rem;
-    border-radius: 25px;
-    border: none;
-    outline: none;
-    padding: .2em 1em;
-    margin: auto;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    input {
+      font-family: 'Open Sans', sans-serif;
+      width: calc(100% - 2em);
+      font-size: 2rem;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      padding: .2em 1em;
+      margin: auto;
+    }
+
+    button {
+      font-family: Shnobel;
+      font-size: 2.5rem;
+      color: white;
+
+      width: 80%;
+      background-color: transparent;
+      border: 3px solid white;
+      border-radius: 35px;
+      padding: .2em 0;
+      margin: 1em auto;
+      outline: none;
+      cursor: pointer;
+
+      &:hover {
+        border: 3px solid #7F4156;
+        background-color: #7F4156;
+      }
+    }
   }
 }

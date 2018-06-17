@@ -8,7 +8,7 @@ export default class Form extends React.Component {
         <p>Оставь почту</p>
         <div>
           <input />
-          <button />
+          <button>Отправить</button>
         </div>
       </div>
     )
