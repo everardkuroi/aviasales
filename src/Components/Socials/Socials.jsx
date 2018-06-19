@@ -11,16 +11,20 @@ export default class Socials extends React.Component {
       <div className={'socials'}>
         <p><span>1.</span>Поделитесь с друзьями</p>
         <div>
-          <span className={'link'}>
+          <span className={'link'}
+                onClick={() => window.open("https://vk.com/share.php?url=", "popup", "width=600,height=400")}>
             <img src={vk} />
           </span>
-          <span className={'link'}>
+          <span className={'link'}
+                onClick={() => window.open("https://www.facebook.com/sharer/sharer.php?u=", "popup", "width=600,height=400")}>
             <img src={fb} />
           </span>
-          <span className={'link'}>
+          <span className={'link'}
+                onClick={() => window.open("https://twitter.com/home?status=", "popup", "width=600,height=400")}>
             <img src={twitter} />
           </span>
-          <span className={'link'}>
+          <span className={'link'}
+                onClick={() => window.open("https://connect.ok.ru/offer?url=", "popup", "width=600,height=400")}>
             <img src={ok} />
           </span>
         </div>
