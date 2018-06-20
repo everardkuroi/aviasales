@@ -53,7 +53,7 @@ class Form extends React.Component {
       <div className={`form ${this.state.send && 'done'}`}>
         <p className={'email'}><span>Оставь почту</span></p>
         <div>
-          <input disabled={this.props.email !== ''} onInput={this.emailChange} />
+          <input disabled={this.props.send} onInput={this.emailChange} />
           <button className={this.state.valid ? 'buttonEnabled' : 'buttonDisabled'}
                   onClick={() => this.handleClick()}>
             Отправить

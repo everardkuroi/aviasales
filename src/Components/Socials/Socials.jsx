@@ -13,7 +13,7 @@ class Socials extends React.Component {
     const request = new Request('http://localhost:3000/shared', {
       method: 'POST',
       headers: new Headers({'Content-Type': 'application/json'}),
-      body: JSON.stringify({userId: this.props.userId, shared: this.props.shared}),
+      body: JSON.stringify({userId: this.props.userId}),
     });
     fetch(request).then(response => response.json().then(data => {
       console.log('shared', data);

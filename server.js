@@ -26,24 +26,20 @@ app.post('/userId', (req, res, next) => {
   } else {
     // проверка на наличие id и присвоение оного, если искомый отсутствует
     console.log('2');
-    const userId = genId();
-    res.send({userId});
-    client.query(`INSERT INTO public."usersData" (id, shared, email) VALUES ('${userId}', false, '')`);
+    const id = genId();
+    res.send({id});
+    client.query(`INSERT INTO public."usersData" (id, shared, email) VALUES ('${id}', false, '')`);
   }
 });
 
 app.post('/shared', (req, res, next) => {
-  console.log('shared', req.body.shared)
-  client.query(`UPDATE public."usersData" SET shared = ${req.body.shared} WHERE id = '${req.body.userId}'`, (err, resp) => {
-    console.log('err', err, 'db', resp);
+  client.query(`UPDATE public."usersData" SET shared = true WHERE id = '${req.body.userId}'`, (err, resp) => {
     res.end();
   });
 });
 
 app.post('/email', (req, res, next) => {
-  console.log('email', req.body.email)
   client.query(`UPDATE public."usersData" SET email = '${req.body.email}' WHERE id = '${req.body.userId}'`, (err, resp) => {
-    console.log('err', err, 'db', resp);
     res.end();
   });
 });
