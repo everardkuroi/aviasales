@@ -47,6 +47,6 @@ export default connect(
     userId: state.userId
   }),
   dispatch => ({
-    updateStore: (data) => dispatch({type: 'ADD_ID', payload: data})
+    updateStore: ({id, shared, email}) => dispatch({type: 'ADD_ALL', payload: {userId: id, shared, email}})
   })
 )(Page)

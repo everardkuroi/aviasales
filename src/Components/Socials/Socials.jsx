@@ -9,17 +9,30 @@ import propTypes from 'prop-types';
 
 class Socials extends React.Component {
 
+  sendData() {
+    const request = new Request('http://localhost:3000/shared', {
+      method: 'POST',
+      headers: new Headers({'Content-Type': 'application/json'}),
+      body: JSON.stringify({userId: this.props.userId, shared: this.props.shared}),
+    });
+    fetch(request).then(response => response.json().then(data => {
+      console.log('shared', data);
+    }));
+  }
+
   popUp(link) {
     window.uno = window.open(link, "popup", "width=600,height=400");
     let timer = setInterval(() => {
       if (window.uno.closed) {
         clearInterval(timer);
         this.props.share();
+        this.sendData();
       }
     }, 500)
   }
 
   render() {
+    console.log(this.props.userId, this.props.shared)
     return (
       <div className={`socials ${this.props.shared && 'done'}`}>
         <p className={'share'}><span>Поделись с друзьями</span></p>
@@ -46,11 +59,12 @@ class Socials extends React.Component {
   }
 }
 
-Socials.propTypes = {shared: propTypes.bool.isRequired, share: propTypes.func.isRequired};
+Socials.propTypes = {userId: propTypes.string, shared: propTypes.bool.isRequired, share: propTypes.func.isRequired};
 
 export default connect(
   state => ({
-    shared: state.shared
+    shared: state.shared,
+    userId: state.userId
   }),
   dispatch => ({
     share: () => dispatch({type: 'ADD_ACTION', payload: {shared: false}})

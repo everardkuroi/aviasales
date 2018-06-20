@@ -10,14 +10,16 @@ const initialState = {userId: localStorage.getItem('userId'), shared: false, ema
 
 const middleware = ({getState}) => {
   return next => action => {
-    if (action.type === 'ADD_ID') {
-      console.log('middleware', action.type, action.payload.userId);
-      console.log('state', getState());
+    console.log('action', action.payload);
+    if (action.type === 'ADD_ALL') {
       if (action.payload.userId) {
         localStorage.setItem('userId', action.payload.userId)
       }
     }
-    return next(action);
+    console.log('before', getState());
+    const uno = next(action);
+    console.log('after', getState());
+    return uno;
   }
 };
 
@@ -28,8 +30,8 @@ const userAction = (state = initialState, action) => {
   if (action.type === 'ADD_EMAIL') {
     return Object.assign({}, state, {email: action.payload.email});
   }
-  if (action.type === 'ADD_ID') {
-    return Object.assign({}, state, action.payload.data)
+  if (action.type === 'ADD_ALL') {
+    return Object.assign({}, state, action.payload)
   }
   return state;
 };
