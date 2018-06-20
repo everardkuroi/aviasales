@@ -11,8 +11,7 @@ class Form extends React.Component {
 
     this.state = {
       email: '',
-      valid: false,
-      send: false
+      valid: false
     };
   }
 
@@ -39,18 +38,16 @@ class Form extends React.Component {
   }
 
   handleClick() {
-    // this.props.addEmail(this.state.email);
     this.sendData();
-    this.setState({send: true});
-    console.log('handleClick')
+    this.props.send();
   }
 
   render() {
     return (
-      <div className={`form ${this.state.send && 'done'}`}>
+      <div className={`form ${this.props.sent && 'done'}`}>
         <p className={'email'}><span>Оставь почту</span></p>
         <div>
-          <input disabled={this.props.send} onInput={this.emailChange} />
+          <input disabled={this.props.sent} onInput={this.emailChange} defaultValue={this.props.email} />
           <button className={this.state.valid ? 'buttonEnabled' : 'buttonDisabled'}
                   onClick={() => this.handleClick()}>
             Отправить
@@ -61,14 +58,22 @@ class Form extends React.Component {
   }
 }
 
-Form.propTypes = {userId: propTypes.string, email: propTypes.string.isRequired, addEmail: propTypes.func.isRequired};
+Form.propTypes = {
+  userId: propTypes.string,
+  email: propTypes.string.isRequired,
+  sent: propTypes.bool.isRequired,
+  addEmail: propTypes.func.isRequired,
+  send: propTypes.func.isRequired
+};
 
 export default connect(
   state => ({
     email: state.email,
-    userId: state.userId
+    userId: state.userId,
+    sent: state.sent
   }),
   dispatch => ({
-    addEmail: (email) => dispatch({type: 'ADD_EMAIL', payload: {email}})
+    addEmail: (email) => dispatch({type: 'ADD_EMAIL', payload: {email}}),
+    send: () => dispatch({type: 'ADD_SENT', payload: {sent: true}})
   })
 )(Form)

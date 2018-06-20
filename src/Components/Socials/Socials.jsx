@@ -65,6 +65,6 @@ export default connect(
     userId: state.userId
   }),
   dispatch => ({
-    share: () => dispatch({type: 'ADD_ACTION', payload: {shared: false}})
+    share: () => dispatch({type: 'ADD_ACTION', payload: {shared: true}})
   })
 )(Socials)

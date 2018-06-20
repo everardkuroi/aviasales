@@ -6,7 +6,7 @@ import 'normalize.css';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 
-const initialState = {userId: localStorage.getItem('userId'), shared: false, email: ''};
+const initialState = {userId: localStorage.getItem('userId'), shared: false, email: '', sent: localStorage.getItem('sent')};
 
 const middleware = ({getState}) => {
   return next => action => {
@@ -16,10 +16,12 @@ const middleware = ({getState}) => {
         localStorage.setItem('userId', action.payload.userId)
       }
     }
-    console.log('before', getState());
-    const uno = next(action);
-    console.log('after', getState());
-    return uno;
+    if (action.type === 'ADD_SENT') {
+      if (action.payload.sent) {
+        localStorage.setItem('sent', action.payload.sent)
+      }
+    }
+    return next(action);
   }
 };
 
@@ -32,6 +34,9 @@ const userAction = (state = initialState, action) => {
   }
   if (action.type === 'ADD_ALL') {
     return Object.assign({}, state, action.payload)
+  }
+  if (action.type === 'ADD_SENT') {
+    return Object.assign({}, state, {sent: true})
   }
   return state;
 };
