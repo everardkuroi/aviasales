@@ -8,13 +8,12 @@ import Form from "./Form/Form";
 export default class Page extends React.Component {
 
   toDatabase() {
-    const request = new Request('http://localhost:3000/', {
-      method: 'POST',
-      headers: new Headers({'Content-Type': 'application/json'}),
-      body: JSON.stringify({data: 'hello'})
+    const request = new Request('http://localhost:3000/userId', {
+      method: 'GET',
+      headers: new Headers({'Content-Type': 'application/json'})
     });
 
-    fetch(request).then(response => response.json().then(data => console.log(data)));
+    fetch(request).then(response => response.text().then(data => console.log(data)));
   }
 
   render() {
