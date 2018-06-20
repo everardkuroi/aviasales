@@ -15,17 +15,13 @@ app.use(bodyParser.json());
 
 
 app.post('/userId', (req, res, next) => {
-  console.log(req.body.userId)
   if (req.body.userId) {
     // поиск данных по id
-    console.log('1')
     client.query(`SELECT * FROM public."usersData" WHERE id IN ('${req.body.userId}')`, (err, resp) => {
-      console.log(resp.rows[0]);
       res.send(JSON.stringify(resp.rows[0]));
     });
   } else {
     // проверка на наличие id и присвоение оного, если искомый отсутствует
-    console.log('2');
     const id = genId();
     res.send({id});
     client.query(`INSERT INTO public."usersData" (id, shared, email) VALUES ('${id}', false, '')`);
