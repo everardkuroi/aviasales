@@ -5,6 +5,7 @@ import twitter from './assets/twitter.svg';
 import ok from './assets/ok.svg';
 import './assets/style.scss';
 import {connect} from 'react-redux';
+import propTypes from 'prop-types';
 
 class Socials extends React.Component {
 
@@ -13,14 +14,14 @@ class Socials extends React.Component {
     let timer = setInterval(() => {
       if (window.uno.closed) {
         clearInterval(timer);
-        console.log('hi');
+        this.props.share();
       }
     }, 500)
   }
 
   render() {
     return (
-      <div className={'socials'}>
+      <div className={`socials ${this.props.shared && 'done'}`}>
         <p className={'share'}><span>Поделись с друзьями</span></p>
         <div className={'links'}>
           <span className={'link'}
@@ -44,6 +45,8 @@ class Socials extends React.Component {
     )
   }
 }
+
+Socials.propTypes = {shared: propTypes.bool.isRequired, share: propTypes.func.isRequired};
 
 export default connect(
   state => ({

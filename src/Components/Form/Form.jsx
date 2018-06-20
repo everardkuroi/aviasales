@@ -1,18 +1,22 @@
 import * as React from 'react';
 import './assets/style.scss';
 import {connect} from "react-redux";
+import propTypes from 'prop-types';
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
+
+    this.emailChange = this.emailChange.bind(this);
+
     this.state = {
       email: "",
       valid: false
     };
   }
 
-  emailChange(value) {
-    this.setState({email: value});
+  emailChange(event) {
+    this.setState({email: event.target.value});
     this.emailValidation();
   }
 
@@ -23,11 +27,12 @@ class Form extends React.Component {
 
   render() {
     return (
-      <div className={'form'}>
+      <div className={`form ${this.props.email !== '' && 'done'}`}>
         <p className={'email'}><span>Оставь почту</span></p>
         <div>
-          <input onInput={e => this.emailChange(e.target.value)} />
-          <button className={this.state.valid ? 'buttonEnabled' : 'buttonDisabled'}>
+          <input disabled={this.props.email !== ''} onInput={this.emailChange} />
+          <button className={this.state.valid ? 'buttonEnabled' : 'buttonDisabled'}
+                  onClick={() => this.props.addEmail(this.state.email)}>
             Отправить
           </button>
         </div>
@@ -35,6 +40,8 @@ class Form extends React.Component {
     )
   }
 }
+
+Form.propTypes = {email: propTypes.string.isRequired, addEmail: propTypes.func.isRequired};
 
 export default connect(
   state => ({
