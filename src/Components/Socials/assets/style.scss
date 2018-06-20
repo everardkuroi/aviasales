@@ -1,27 +1,56 @@
 .socials {
   width: 100%;
 
-  p {
+  .share {
     position: relative;
     font-family: 'Open Sans', sans-serif;
     color: white;
 
-    span {
+    &:before {
       position: absolute;
       left: -1em;
       top: -0.2em;
 
+      content: '1.';
       font-family: Shnobel;
       font-size: 2rem;
     }
+
   }
 
-  div {
+  .links {
     display: flex;
     justify-content: space-between;
 
     .link {
       cursor: pointer;
+    }
+  }
+
+  &.done {
+
+    .share {
+      span {
+        opacity: 0.5;
+      }
+    }
+
+    .share:before {
+      position: absolute;
+      left: -1.2em;
+      top: 0;
+
+      content: '';
+      font-family: Shnobel;
+      font-size: 2rem;
+      width: 20px;
+      height: 20px;
+      background-image: url('../../assets/check.png');
+      background-size: contain;
+    }
+
+    .links {
+      opacity: 0.5;
     }
   }
 }

@@ -23,7 +23,7 @@ export default class Form extends React.Component {
   render() {
     return (
       <div className={'form'}>
-        <p><span>2.</span>Оставь почту</p>
+        <p className={'email'}><span>Оставь почту</span></p>
         <div>
           <input onInput={e => this.emailChange(e.target.value)} />
           <button className={this.state.valid ? 'buttonEnabled' : 'buttonDisabled'}>

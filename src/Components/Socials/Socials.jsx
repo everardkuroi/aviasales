@@ -9,8 +9,8 @@ export default class Socials extends React.Component {
   render() {
     return (
       <div className={'socials'}>
-        <p><span>1.</span>Поделитесь с друзьями</p>
-        <div>
+        <p className={'share'}><span>Поделись с друзьями</span></p>
+        <div className={'links'}>
           <span className={'link'}
                 onClick={() => window.open("https://vk.com/share.php?url=", "popup", "width=600,height=400")}>
             <img src={vk} />

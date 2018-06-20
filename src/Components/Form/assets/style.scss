@@ -1,17 +1,17 @@
 .form {
   width: 100%;
 
-
-  p {
+  .email {
     position: relative;
     font-family: 'Open Sans', sans-serif;
     color: white;
 
-    span {
+    &:before {
       position: absolute;
       left: -1em;
       top: -0.2em;
 
+      content: '2.';
       font-family: Shnobel;
       font-size: 2rem;
     }
@@ -65,6 +65,38 @@
         color: white;
         border: 3px solid #7F4156;
         background-color: #7F4156;
+      }
+    }
+  }
+
+  &.done {
+    .email {
+      span {
+        opacity: 0.5;
+      }
+
+      &:before {
+        position: absolute;
+        left: -1.2em;
+        top: 0;
+
+        content: '';
+        font-family: Shnobel;
+        font-size: 2rem;
+        width: 20px;
+        height: 20px;
+        background-image: url('../../assets/check.png');
+        background-size: contain;
+      }
+    }
+
+    div {
+      input {
+        background-color: #E5B4C6;
+      }
+
+      button {
+        display: none;
       }
     }
   }
