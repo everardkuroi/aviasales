@@ -4,20 +4,25 @@ import background from './assets/background.svg';
 import logo from './assets/logo.svg';
 import Socials from "./Socials/Socials";
 import Form from "./Form/Form";
+import propTypes from "prop-types";
+import {connect} from "react-redux";
 
-export default class Page extends React.Component {
+class Page extends React.Component {
 
-  toDatabase() {
+  componentDidMount() {
     const request = new Request('http://localhost:3000/userId', {
-      method: 'GET',
-      headers: new Headers({'Content-Type': 'application/json'})
+      method: 'POST',
+      headers: new Headers({'Content-Type': 'application/json'}),
+      body: JSON.stringify({userId: this.props.userId}),
     });
 
-    fetch(request).then(response => response.text().then(data => console.log(data)));
+    fetch(request).then(response => response.json().then(data => {
+      console.log('fetched', data);
+      this.props.updateStore(data);
+    }));
   }
 
   render() {
-    this.toDatabase();
     return (
       <div className={'main'} style={{backgroundImage: `url(${background})`}}>
         <div className={'logo'}>
@@ -34,3 +39,14 @@ export default class Page extends React.Component {
     )
   }
 }
+
+Page.propTypes = {userId: propTypes.string, updateStore: propTypes.func.isRequired};
+
+export default connect(
+  state => ({
+    userId: state.userId
+  }),
+  dispatch => ({
+    updateStore: (data) => dispatch({type: 'ADD_ID', payload: data})
+  })
+)(Page)

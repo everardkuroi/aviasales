@@ -1,36 +1,34 @@
 const pg = require('pg');
 const express = require('express');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
+const bodyParser = require('body-parser');
 const port = 3000;
 
+
 const app = express();
-
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   return next();
-// });
-
-// app.use(cookieParser());
-// app.use(session({
-//   secret: 'Aviasales',
-//   resave: true,
-//   saveUninitialized: true,
-//   cookie: {httpOnly: false, secure: true},
-//   genid: function (req) {
-//     return genId();
-//   }
-// }));
-// app.use(express.static('./dist'));
-
-// проверка id
-app.post('/',  (req, res, next) => {
-  res.cookie('name', 'Evgen');
-  res.send('text');
-  res.end();
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
+app.use(express.static('./dist'));
+app.use(bodyParser.json());
 
+
+app.post('/userId', (req, res, next) => {
+  console.log(req.body.userId)
+  if (req.body.userId) {
+    console.log('1')
+    client.query(`SELECT * FROM public."usersData" WHERE id IN ('${req.body.userId}')`, (err, resp) => {
+      console.log(resp.rows[0]);
+      res.send(JSON.stringify(resp.rows[0]));
+    });
+  } else {
+    console.log('2');
+    const userId = genId();
+    res.send({userId});
+    client.query(`INSERT INTO public."usersData" (id, shared, email) VALUES ('${userId}', false, '')`);
+  }
+});
 app.listen(port, () => console.log('listening on port ' + port));
 
 
@@ -39,31 +37,13 @@ const genId = () => {
   return Math.random().toString(36).substr(2, 9);
 };
 
+// подключение к базе
+const client = new pg.Client({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'users',
+  password: '4321',
+  port: 5432,
+});
 
-
-
-
-
-
-
-
-
-
-
-
-// const connectionString = 'postgres://localhost:5432/';
-
-// const client = new pg.Client(connectionString);
-// const client = new pg.Client({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'users',
-//   password: '4321',
-//   port: 5432,
-// });
-//
-// client.connect();
-// const query = client.query('SELECT NOW()', (err, res) => {
-//   // console.log(err);
-//   client.end();
-// });
+client.connect();
