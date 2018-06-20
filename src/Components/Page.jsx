@@ -17,7 +17,6 @@ class Page extends React.Component {
     });
 
     fetch(request).then(response => response.json().then(data => {
-      console.log('fetched', data);
       this.props.updateStore(data);
     }));
   }

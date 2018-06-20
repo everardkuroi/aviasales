@@ -15,9 +15,7 @@ class Socials extends React.Component {
       headers: new Headers({'Content-Type': 'application/json'}),
       body: JSON.stringify({userId: this.props.userId}),
     });
-    fetch(request).then(response => response.json().then(data => {
-      console.log('shared', data);
-    }));
+    fetch(request)
   }
 
   popUp(link) {
