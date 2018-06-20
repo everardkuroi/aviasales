@@ -1,7 +1,8 @@
 import * as React from 'react';
 import './assets/style.scss';
+import {connect} from "react-redux";
 
-export default class Form extends React.Component {
+class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,3 +35,12 @@ export default class Form extends React.Component {
     )
   }
 }
+
+export default connect(
+  state => ({
+    email: state.email
+  }),
+  dispatch => ({
+    addEmail: (email) => dispatch({type: 'ADD_EMAIL', payload: {email}})
+  })
+)(Form)
