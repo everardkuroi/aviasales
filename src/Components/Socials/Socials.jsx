@@ -57,7 +57,7 @@ class Socials extends React.Component {
   }
 }
 
-Socials.propTypes = {userId: propTypes.string, shared: propTypes.bool.isRequired, share: propTypes.func.isRequired};
+Socials.propTypes = {userId: propTypes.string, shared: propTypes.bool, share: propTypes.func};
 
 export default connect(
   state => ({

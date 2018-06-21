@@ -61,9 +61,9 @@ class Form extends React.Component {
 Form.propTypes = {
   userId: propTypes.string,
   email: propTypes.string,
-  sent: propTypes.bool.isRequired,
-  addEmail: propTypes.func.isRequired,
-  send: propTypes.func.isRequired
+  sent: propTypes.bool,
+  addEmail: propTypes.func,
+  send: propTypes.func
 };
 
 export default connect(

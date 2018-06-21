@@ -41,7 +41,7 @@ class Page extends React.Component {
   }
 }
 
-Page.propTypes = {userId: propTypes.string, updateStore: propTypes.func.isRequired, shared: propTypes.bool, sent: propTypes.bool};
+Page.propTypes = {userId: propTypes.string, updateStore: propTypes.func, shared: propTypes.bool, sent: propTypes.bool};
 
 export default connect(
   state => ({

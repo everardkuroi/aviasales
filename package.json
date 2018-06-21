@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev_server": "webpack-dev-server --mode development",
-    "watch": "webpack --mode development --watch",
-    "production": "webpack --mode production ./src/index.js --output ./production/main.js"
+    "build": "webpack --mode development"
   },
   "author": "",
   "license": "ISC",
