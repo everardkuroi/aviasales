@@ -10,7 +10,6 @@ const initialState = {userId: localStorage.getItem('userId'), shared: false, ema
 
 const middleware = ({getState}) => {
   return next => action => {
-    console.log('action', action.payload);
     if (action.type === 'ADD_ALL') {
       if (action.payload.userId) {
         localStorage.setItem('userId', action.payload.userId)

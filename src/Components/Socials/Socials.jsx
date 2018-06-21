@@ -30,7 +30,6 @@ class Socials extends React.Component {
   }
 
   render() {
-    console.log(this.props.userId, this.props.shared)
     return (
       <div className={`socials ${this.props.shared && 'done'}`}>
         <p className={'share'}><span>Поделись с друзьями</span></p>
