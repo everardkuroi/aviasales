@@ -6,6 +6,7 @@ import Socials from "./Socials/Socials";
 import Form from "./Form/Form";
 import propTypes from "prop-types";
 import {connect} from "react-redux";
+import Final from "./Final/Final";
 
 class Page extends React.Component {
 
@@ -23,27 +24,31 @@ class Page extends React.Component {
 
   render() {
     return (
-      <div className={'main'} style={{backgroundImage: `url(${background})`}}>
-        <div className={'logo'}>
-          <span>
-            <img src={logo} />
-          </span>
-        </div>
-        <div className={'content'}>
-          <h1>Чтобы выиграть путешествие</h1>
-          <Socials />
-          <Form />
-        </div>
-      </div>
+      // this.props.shared && this.props.sent && <Final /> ||
+      <Final />
+      // {/*<div className={'main'} style={{backgroundImage: `url(${background})`}}>*/}
+      //   {/*<div className={'logo'}>*/}
+      //         {/*<span>*/}
+      //           {/*<img src={logo}/>*/}
+      //         {/*</span>*/}
+      //   {/*</div>*/}
+      //   {/*<div className={'content'}>*/}
+      //     {/*<h1>Чтобы выиграть путешествие</h1>*/}
+      //     {/*<Socials/>*/}
+      //     {/*<Form/>*/}
+      //   {/*</div>*/}
+      // {/*</div>*/}
     )
   }
 }
 
-Page.propTypes = {userId: propTypes.string, updateStore: propTypes.func.isRequired};
+Page.propTypes = {userId: propTypes.string, updateStore: propTypes.func.isRequired, shared: propTypes.bool, sent: propTypes.bool};
 
 export default connect(
   state => ({
-    userId: state.userId
+    userId: state.userId,
+    shared: state.shared,
+    sent: state.sent
   }),
   dispatch => ({
     updateStore: ({id, shared, email}) => dispatch({type: 'ADD_ALL', payload: {userId: id, shared, email}})
