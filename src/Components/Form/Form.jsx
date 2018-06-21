@@ -60,7 +60,7 @@ class Form extends React.Component {
 
 Form.propTypes = {
   userId: propTypes.string,
-  email: propTypes.string.isRequired,
+  email: propTypes.string,
   sent: propTypes.bool.isRequired,
   addEmail: propTypes.func.isRequired,
   send: propTypes.func.isRequired
