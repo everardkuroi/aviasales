@@ -24,20 +24,19 @@ class Page extends React.Component {
 
   render() {
     return (
-      // this.props.shared && this.props.sent && <Final /> ||
-      <Final />
-      // {/*<div className={'main'} style={{backgroundImage: `url(${background})`}}>*/}
-      //   {/*<div className={'logo'}>*/}
-      //         {/*<span>*/}
-      //           {/*<img src={logo}/>*/}
-      //         {/*</span>*/}
-      //   {/*</div>*/}
-      //   {/*<div className={'content'}>*/}
-      //     {/*<h1>Чтобы выиграть путешествие</h1>*/}
-      //     {/*<Socials/>*/}
-      //     {/*<Form/>*/}
-      //   {/*</div>*/}
-      // {/*</div>*/}
+      this.props.shared && this.props.sent && <Final /> ||
+      <div className={'main'} style={{backgroundImage: `url(${background})`}}>
+        <div className={'logo'}>
+              <span>
+                <img src={logo}/>
+              </span>
+        </div>
+        <div className={'content'}>
+          <h1>Чтобы выиграть путешествие</h1>
+          <Socials/>
+          <Form/>
+        </div>
+      </div>
     )
   }
 }
